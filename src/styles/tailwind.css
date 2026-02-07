@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Core System Colors */
+    --color-background: #FAFAFA; /* warm off-white */
+    --color-foreground: #1E293B; /* deep charcoal */
+    --color-border: #E2E8F0; /* light gray */
+    --color-input: #FFFFFF; /* pure white */
+    --color-ring: #2563EB; /* professional blue */
+    
+    /* Card & Surface Colors */
+    --color-card: #FFFFFF; /* pure white */
+    --color-card-foreground: #1E293B; /* deep charcoal */
+    --color-popover: #FFFFFF; /* pure white */
+    --color-popover-foreground: #1E293B; /* deep charcoal */
+    
+    /* Muted Colors */
+    --color-muted: #F1F5F9; /* light slate */
+    --color-muted-foreground: #64748B; /* medium gray */
+    
+    /* Primary Brand Colors */
+    --color-primary: #2563EB; /* professional blue */
+    --color-primary-foreground: #FFFFFF; /* white */
+    
+    /* Secondary Colors */
+    --color-secondary: #64748B; /* sophisticated slate gray */
+    --color-secondary-foreground: #FFFFFF; /* white */
+    
+    /* Accent Colors */
+    --color-accent: #0EA5E9; /* lighter blue */
+    --color-accent-foreground: #FFFFFF; /* white */
+    
+    /* Status Colors */
+    --color-success: #059669; /* forest green */
+    --color-success-foreground: #FFFFFF; /* white */
+    
+    --color-warning: #D97706; /* amber orange */
+    --color-warning-foreground: #FFFFFF; /* white */
+    
+    --color-error: #DC2626; /* clear red */
+    --color-error-foreground: #FFFFFF; /* white */
+    
+    --color-destructive: #DC2626; /* clear red */
+    --color-destructive-foreground: #FFFFFF; /* white */
+    
+    /* Border Radius */
+    --radius: 0.375rem; /* 6px */
+  }
+  
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  /* Glass Morphism Effect */
+  .glass-morphism {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  /* Elevation System */
+  .elevation-1 {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  }
+  
+  .elevation-2 {
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  }
+  
+  .elevation-3 {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+  
+  .elevation-4 {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+  
+  .elevation-5 {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+  
+  /* Smooth Transitions */
+  .transition-smooth {
+    transition: all 0.2s ease-out;
+  }
+  
+  .transition-medium {
+    transition: all 0.3s ease-out;
+  }
+  
+  /* Status Color Classes */
+  .status-success {
+    @apply bg-success text-success-foreground;
+  }
+  
+  .status-warning {
+    @apply bg-warning text-warning-foreground;
+  }
+  
+  .status-error {
+    @apply bg-error text-error-foreground;
+  }
+  
+  /* Typography Classes */
+  .font-heading {
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .font-body {
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
