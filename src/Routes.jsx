@@ -12,6 +12,9 @@ import UserProfile from "./pages/user-profile";
 import SettingsPage from "pages/settings";
 import Clients from "pages/clients";
 import Help from "pages/help";
+import ReportsPage from "pages/reports";
+
+
 
 const Routes = () => {
   return (
@@ -30,6 +33,7 @@ const Routes = () => {
           <Route path="/clients" element={<Clients />} />   // ..
           <Route path="/settings" element={<SettingsPage />} />
           <Route path="/user-profile" element={<UserProfile />} />
+          <Route path="/reports" element={<ReportsPage />} />
           <Route path="*" element={<NotFound />} />
         </RouterRoutes>
       </ErrorBoundary>

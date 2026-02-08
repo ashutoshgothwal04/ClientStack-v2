@@ -93,7 +93,7 @@ const Sidebar = ({ isExpanded = true, onToggle }) => {
         <div className="flex flex-col h-full">
           {/* Logo Section */}
           <div className="flex items-center justify-between p-6 border-b border-border">
-            <Link to="/dashboard" className="flex items-center space-x-3">
+            <Link to="/" className="flex items-center space-x-3">
               <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
                 <svg
                   viewBox="0 0 24 24"
