@@ -13,7 +13,10 @@ import SettingsPage from "pages/settings";
 import Clients from "pages/clients";
 import Help from "pages/help";
 import ReportsPage from "pages/reports";
-
+import TestBackend from "pages/TestBackend";
+import LandingPage from "pages/landing-page";
+import ContractsPage from "pages/contracts";
+import ScheduleMeetings from "pages/schedule-meetings";
 
 
 const Routes = () => {
@@ -22,18 +25,24 @@ const Routes = () => {
       <ErrorBoundary>
         <ScrollToTop />
         <RouterRoutes>
-          {/* Define your route here */}
-          <Route path="/" element={<BillingInvoices />} />
+          {/* <Route path="/" element={<Dashboard />} /> */}
+          <Route path="/" element={<LandingPage />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/project-management" element={<ProjectManagement />} />
           <Route path="/billing-invoices" element={<BillingInvoices />} />
           <Route path="/help" element={<Help />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/calendar" element={<ScheduleMeetings />} />
+          <Route path="/schedule-meetings" element={<ScheduleMeetings />} />
+
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/clients" element={<Clients />} />   // ..
+          <Route path="/clients" element={<Clients />} />
+          <Route path="/contracts" element={<ContractsPage />} />
           <Route path="/settings" element={<SettingsPage />} />
           <Route path="/user-profile" element={<UserProfile />} />
           <Route path="/reports" element={<ReportsPage />} />
+          <Route path="/test-backend" element={<TestBackend />} />
+          <Route path="/schedule-meetings" element={<ScheduleMeetings />} />
           <Route path="*" element={<NotFound />} />
         </RouterRoutes>
       </ErrorBoundary>

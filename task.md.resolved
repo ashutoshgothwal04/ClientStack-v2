@@ -1,0 +1,29 @@
+# Task List
+
+- [x] Planning Phase
+    - [x] Create Implementation Plan <!-- id: 1 -->
+    - [x] User Review <!-- id: 2 -->
+- [x] Backend Setup (Node.js/Express)
+    - [x] Initialize `server` directory and [package.json](file:///d:/projects/cliendStack/package.json) <!-- id: 3 -->
+    - [x] Install dependencies (express, inngest, etc.) <!-- id: 4 -->
+    - [x] Create main server entry point <!-- id: 5 -->
+- [/] Supabase Integration
+    - [x] Configure Supabase Client in Backend <!-- id: 6 -->
+    - [ ] Create Database Schema/Migrations <!-- id: 7 -->
+    - [ ] Implement Auth Wrappers/Middleware <!-- id: 8 -->
+- [/] Inngest Scheduling
+    - [x] Setup Inngest Client <!-- id: 9 -->
+    - [x] Create API Endpoint for Inngest (`/api/inngest`) <!-- id: 10 -->
+    - [x] Define Example Scheduled Functions <!-- id: 11 -->
+- [x] React Email & Notifications
+    - [x] Setup React Email Environment <!-- id: 12 -->
+    - [x] Create Email Templates <!-- id: 13 -->
+    - [x] Implement Email Sending Logic (e.g. via Resend/Nodemailer) <!-- id: 14 -->
+- [x] Frontend Integration
+    - [x] Call Backend Endpoints from Frontend <!-- id: 15 -->
+- [x] Verification
+    - [x] Test Backend Endpoints <!-- id: 16 -->
+    - [x] Test Inngest Triggers <!-- id: 17 -->
+    - [x] Verify Email Sending <!-- id: 18 -->
+
+```

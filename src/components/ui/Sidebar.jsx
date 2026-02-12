@@ -8,43 +8,51 @@ const Sidebar = ({ isExpanded = true, onToggle }) => {
   const location = useLocation();
   const [showMoreMenu, setShowMoreMenu] = useState(false);
 
-  const navigationItems = [
-    {
-      label: 'Dashboard',
-      path: '/dashboard',
-      icon: 'LayoutDashboard',
-      badge: null,
-      tooltip: 'Overview and analytics'
-    },
-    {
-      label: 'Projects',
-      path: '/project-management',
-      icon: 'FolderKanban',
-      badge: 3,
-      tooltip: 'Manage client projects'
-    },
-    {
-      label: 'Billing',
-      path: '/billing-invoices',
-      icon: 'Receipt',
-      badge: null,
-      tooltip: 'Invoices and payments'
-    },
-    {
-      label: 'Clients',
-      path: '/clients',
-      icon: 'Users',
-      badge: null,
-      tooltip: 'Client relationship management'
-    },
-    {
-      label: 'Contracts',
-      path: '/contracts',
-      icon: 'FileText',
-      badge: 2,
-      tooltip: 'Agreements and documents'
-    }
-  ];
+const navigationItems = [
+  {
+    label: 'Dashboard',
+    path: '/dashboard',
+    icon: 'LayoutDashboard',
+    badge: null,
+    tooltip: 'Overview and analytics'
+  },
+  {
+    label: 'Projects',
+    path: '/project-management',
+    icon: 'FolderKanban',
+    badge: 3,
+    tooltip: 'Manage client projects'
+  },
+  {
+    label: 'Billing',
+    path: '/billing-invoices',
+    icon: 'Receipt',
+    badge: null,
+    tooltip: 'Invoices and payments'
+  },
+  {
+    label: 'Clients',
+    path: '/clients',
+    icon: 'Users',
+    badge: null,
+    tooltip: 'Client relationship management'
+  },
+  {
+    label: 'Contracts',
+    path: '/contracts',
+    icon: 'FileText',
+    badge: 2,
+    tooltip: 'Agreements and documents'
+  },
+  {
+    label: 'Schedule Meetings',
+    path: '/schedule-meetings',
+    icon: 'Calendar',
+    badge: null, // later you can show meeting count here
+    tooltip: 'Manage meetings and calendar'
+  }
+];
+
 
   const moreMenuItems = [
     {

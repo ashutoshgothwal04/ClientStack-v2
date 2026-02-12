@@ -151,18 +151,23 @@ const Header = ({ onMenuToggle, sidebarExpanded = false }) => {
                   <p className="text-xs text-muted-foreground">john@clientstack.com</p>
                 </div>
                 <div className="py-2">
-                  <button className="w-full px-3 py-2 text-left text-sm text-popover-foreground hover:bg-muted transition-smooth flex items-center space-x-2">
+                  <NavLink
+                    to="/user-profile"
+                    onClick={() => setShowUserMenu(false)}
+                    className="w-full px-3 py-2 text-left text-sm text-popover-foreground hover:bg-muted transition-smooth flex items-center space-x-2"
+                  >
                     <Icon name="User" size={16} />
                     <span>Profile</span>
-                  </button>
+                  </NavLink>
+
                   <NavLink to="/settings" className="w-full px-3 py-2 text-left text-sm text-popover-foreground hover:bg-muted transition-smooth flex items-center space-x-2" onClick={() => setShowUserMenu(false)}>
                     <Icon name="Settings" size={16} />
                     <span>Settings</span>
                   </NavLink>
-                  <button className="w-full px-3 py-2 text-left text-sm text-popover-foreground hover:bg-muted transition-smooth flex items-center space-x-2">
+                  <NavLink to="/help" className="w-full px-3 py-2 text-left text-sm text-popover-foreground hover:bg-muted transition-smooth flex items-center space-x-2" onClick={() => setShowUserMenu(false)}>
                     <Icon name="HelpCircle" size={16} />
                     <span>Help & Support</span>
-                  </button>
+                  </NavLink>
                 </div>
                 <div className="py-2 border-t border-border">
                   <button

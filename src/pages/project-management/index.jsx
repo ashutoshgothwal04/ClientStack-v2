@@ -181,32 +181,32 @@ const ProjectManagement = () => {
 
   // Filter projects based on active filters
   const filteredProjects = projects?.filter(project => {
-    if (filters?.search && !project?.name?.toLowerCase()?.includes(filters?.search?.toLowerCase()) && 
-        !project?.client?.toLowerCase()?.includes(filters?.search?.toLowerCase())) {
+    if (filters?.search && !project?.name?.toLowerCase()?.includes(filters?.search?.toLowerCase()) &&
+      !project?.client?.toLowerCase()?.includes(filters?.search?.toLowerCase())) {
       return false;
     }
-    
+
     if (filters?.status && filters?.status !== 'all' && project?.status !== filters?.status) {
       return false;
     }
-    
+
     if (filters?.client && filters?.client !== 'all' && project?.client !== filters?.client) {
       return false;
     }
-    
+
     if (filters?.priority && filters?.priority !== 'all' && project?.priority !== filters?.priority) {
       return false;
     }
-    
+
     if (filters?.teamMember && filters?.teamMember !== 'all') {
       const hasTeamMember = project?.teamMembers?.some(member => member?.name === filters?.teamMember);
       if (!hasTeamMember) return false;
     }
-    
+
     if (filters?.dateRange && filters?.dateRange !== 'all') {
       const today = new Date();
       const deadline = new Date(project.deadline);
-      
+
       switch (filters?.dateRange) {
         case 'today':
           if (deadline?.toDateString() !== today?.toDateString()) return false;
@@ -224,7 +224,7 @@ const ProjectManagement = () => {
           break;
       }
     }
-    
+
     return true;
   });
 
@@ -263,10 +263,10 @@ const ProjectManagement = () => {
     // Update the project with the new/updated task
     setProjects(prev => prev?.map(project => {
       if (project?.id?.toString() === taskData?.projectId) {
-        const updatedTasks = selectedTask 
+        const updatedTasks = selectedTask
           ? project?.tasks?.map(t => t?.id === selectedTask?.id ? taskData : t) || [taskData]
           : [...(project?.tasks || []), taskData];
-        
+
         return { ...project, tasks: updatedTasks };
       }
       return project;
@@ -277,7 +277,7 @@ const ProjectManagement = () => {
   const handleTaskUpdate = (taskId, updates) => {
     setProjects(prev => prev?.map(project => ({
       ...project,
-      tasks: project?.tasks?.map(task => 
+      tasks: project?.tasks?.map(task =>
         task?.id === taskId ? { ...task, ...updates } : task
       ) || []
     })));
@@ -298,22 +298,27 @@ const ProjectManagement = () => {
     setShowTaskModal(true);
   };
 
+  const breadcrumbItems = [
+    { label: 'Dashboard', path: '/dashboard' },
+    { label: 'Project Management', path: '/project-management', isLast: true }
+  ];
+
   return (
     <div className="min-h-screen bg-background">
-      <Sidebar 
-        isExpanded={sidebarExpanded} 
+      <Sidebar
+        isExpanded={sidebarExpanded}
         onToggle={handleSidebarToggle}
       />
       <div className={`transition-all duration-300 ${sidebarExpanded ? 'lg:ml-60' : 'lg:ml-60'}`}>
-        <Header 
+        <Header
           onMenuToggle={handleSidebarToggle}
           sidebarExpanded={sidebarExpanded}
         />
-        
+
         <main className="pt-16 p-6">
           <div className="max-w-7xl mx-auto">
-            <Breadcrumb />
-            
+            <Breadcrumb customItems={breadcrumbItems} />
+
             {/* Page Header */}
             <div className="flex items-center justify-between mb-8">
               <div>
@@ -324,7 +329,7 @@ const ProjectManagement = () => {
                   Manage your projects, track progress, and collaborate with your team
                 </p>
               </div>
-              
+
               <div className="flex items-center space-x-3">
                 <Button
                   variant="outline"
@@ -396,7 +401,7 @@ const ProjectManagement = () => {
             </div>
 
             {/* Filters */}
-            <ProjectFilters 
+            <ProjectFilters
               onFilterChange={setFilters}
               activeFilters={filters}
             />
@@ -408,7 +413,7 @@ const ProjectManagement = () => {
                   Showing {filteredProjects?.length} of {projects?.length} projects
                 </span>
               </div>
-              
+
               <div className="flex items-center space-x-2">
                 <div className="bg-muted rounded-lg p-1">
                   <Button
