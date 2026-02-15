@@ -32,10 +32,9 @@ const Routes = () => {
           <Route path="/billing-invoices" element={<BillingInvoices />} />
           <Route path="/help" element={<Help />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
           <Route path="/calendar" element={<ScheduleMeetings />} />
           <Route path="/schedule-meetings" element={<ScheduleMeetings />} />
-
-          <Route path="/register" element={<RegisterPage />} />
           <Route path="/clients" element={<Clients />} />
           <Route path="/contracts" element={<ContractsPage />} />
           <Route path="/settings" element={<SettingsPage />} />

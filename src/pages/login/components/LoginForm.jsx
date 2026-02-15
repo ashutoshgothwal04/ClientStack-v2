@@ -4,6 +4,7 @@ import Button from '../../../components/ui/Button';
 import Input from '../../../components/ui/Input';
 import { Checkbox } from '../../../components/ui/Checkbox';
 import Icon from '../../../components/AppIcon';
+import { supabase } from 'lib/supabase';
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -14,13 +15,6 @@ const LoginForm = () => {
   });
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-
-  // Mock credentials for different user types
-  const mockCredentials = {
-    freelancer: { email: 'freelancer@clientstack.com', password: 'freelancer123' },
-    agency: { email: 'agency@clientstack.com', password: 'agency123' },
-    client: { email: 'client@clientstack.com', password: 'client123' }
-  };
 
   const validateForm = () => {
     const newErrors = {};
@@ -58,50 +52,38 @@ const LoginForm = () => {
   };
 
   const handleSubmit = async (e) => {
-    e?.preventDefault();
-    
-    if (!validateForm()) return;
+  e.preventDefault();
 
-    setIsLoading(true);
+  if (!validateForm()) return;
 
-    try {
-      // Simulate API call delay
-      await new Promise(resolve => setTimeout(resolve, 1500));
+  setIsLoading(true);
 
-      // Check against mock credentials
-      const isValidCredentials = Object.values(mockCredentials)?.some(
-        cred => cred?.email === formData?.email && cred?.password === formData?.password
-      );
+  try {
+    const { error } = await supabase.auth.signInWithPassword({
+      email: formData.email,
+      password: formData.password,
+    });
 
-      if (!isValidCredentials) {
-        setErrors({
-          general: `Invalid credentials. Try: freelancer@clientstack.com / freelancer123, agency@clientstack.com / agency123, or client@clientstack.com / client123`
-        });
-        setIsLoading(false);
-        return;
-      }
-
-      // Successful login
-      localStorage.setItem('isAuthenticated', 'true');
-      localStorage.setItem('userEmail', formData?.email);
-      
-      if (formData?.rememberMe) {
-        localStorage.setItem('rememberMe', 'true');
-      }
-
-      navigate('/dashboard');
-    } catch (error) {
-      setErrors({ general: 'Login failed. Please try again.' });
+    if (error) {
+      setErrors({ general: error.message });
       setIsLoading(false);
+      return;
     }
-  };
+
+    navigate("/dashboard");
+  } catch (error) {
+    setErrors({ general: "Login failed. Please try again." });
+    setIsLoading(false);
+  }
+};
+
 
   const handleOAuthLogin = (provider) => {
     setIsLoading(true);
     // Simulate OAuth flow
     setTimeout(() => {
-      localStorage.setItem('isAuthenticated', 'true');
-      localStorage.setItem('userEmail', `user@${provider}.com`);
+      // localStorage.setItem('isAuthenticated', 'true');
+      // localStorage.setItem('userEmail', `user@${provider}.com`);
       navigate('/dashboard');
     }, 2000);
   };

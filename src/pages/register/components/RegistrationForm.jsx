@@ -4,6 +4,7 @@ import Button from '../../../components/ui/Button';
 import Input from '../../../components/ui/Input';
 import { Checkbox } from '../../../components/ui/Checkbox';
 import Icon from '../../../components/AppIcon';
+import { supabase } from 'lib/supabase';
 
 const RegistrationForm = () => {
   const navigate = useNavigate();
@@ -118,33 +119,42 @@ const RegistrationForm = () => {
     return Object.keys(newErrors)?.length === 0;
   };
 
-  const handleSubmit = async (e) => {
-    e?.preventDefault();
-    
-    if (!validateForm()) {
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  if (!validateForm()) return;
+
+  setIsLoading(true);
+
+  try {
+    const { error } = await supabase.auth.signUp({
+      email: formData.email,
+      password: formData.password,
+      options: {
+        data: {
+          full_name: formData.fullName,
+          account_type: formData.accountType,
+          business_name: formData.businessName || null
+        }
+      }
+    });
+
+    if (error) {
+      setErrors({ submit: error.message });
+      setIsLoading(false);
       return;
     }
 
-    setIsLoading(true);
+    alert("Account created! Check your email for verification.");
+    navigate("/login");
 
-    try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      // Mock successful registration
-      console.log('Registration successful:', formData);
-      
-      // Show success message and redirect
-      alert('Account created successfully! Please check your email for verification instructions.');
-      navigate('/login');
-      
-    } catch (error) {
-      console.error('Registration failed:', error);
-      setErrors({ submit: 'Registration failed. Please try again.' });
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  } catch (error) {
+    setErrors({ submit: "Registration failed. Please try again." });
+  } finally {
+    setIsLoading(false);
+  }
+};
+
 
   const passwordValidation = validatePassword(formData?.password);
   const isFormValid = formData?.fullName && 

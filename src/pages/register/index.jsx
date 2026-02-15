@@ -4,11 +4,28 @@ import RegistrationHeader from './components/RegistrationHeader';
 import RegistrationForm from './components/RegistrationForm';
 import OAuthOptions from './components/OAuthOptions';
 import { toast } from "sonner";
+import { useNavigate } from 'react-router-dom';
 
 const RegisterPage = () => {
+  const navigate = useNavigate();
+
+  // ✅ Redirect if already logged in
   React.useEffect(() => {
-    toast.info("Welcome! Create your ClientStack account to unlock powerful CRM features.");
+    const checkUser = async () => {
+      const { data } = await supabase.auth.getUser();
+      if (data?.user) {
+        navigate('/dashboard');
+      }
+    };
+
+    checkUser();
+  }, [navigate]);
+
+  // ✅ Toast effect (separate hook)
+  React.useEffect(() => {
+    toast.info("Welcome! Create your ClientStack account...");
   }, []);
+
   return (
     <>
       <Helmet>

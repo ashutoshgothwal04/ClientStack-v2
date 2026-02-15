@@ -5,17 +5,23 @@ import LoginForm from './components/LoginForm';
 import LoginFooter from './components/LoginFooter';
 import LoginBackground from './components/LoginBackground';
 import { toast } from "sonner";
+import { supabase } from 'lib/supabase';
 
 const LoginPage = () => {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    // Check if user is already authenticated
-    const isAuthenticated = localStorage.getItem('isAuthenticated');
-    if (isAuthenticated === 'true') {
-      navigate('/dashboard');
+
+useEffect(() => {
+  const checkSession = async () => {
+    const { data } = await supabase.auth.getSession();
+    if (data.session) {
+      navigate("/dashboard");
     }
-  }, [navigate]);
+  };
+
+  checkSession();
+}, [navigate]);
+
 
   return (
     <div className="min-h-screen bg-background relative flex items-center justify-center p-4">
