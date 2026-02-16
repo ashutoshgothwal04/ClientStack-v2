@@ -209,7 +209,7 @@ const navigationItems = [
           </nav>
 
           {/* Bottom Section */}
-          <div className="p-4 border-t border-border">
+          {/* <div className="p-4 border-t border-border">
             <div className="bg-muted rounded-lg p-4">
               <div className="flex items-center space-x-3 mb-3">
                 <div className="w-8 h-8 bg-success rounded-full flex items-center justify-center">
@@ -224,7 +224,7 @@ const navigationItems = [
                 Upgrade Plan
               </Button>
             </div>
-          </div>
+          </div> */}
         </div>
       </aside>
     </>
